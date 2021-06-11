@@ -43,7 +43,7 @@ class BlogPostView(CreateUpdateDeleteView):
         res_status = status.HTTP_400_BAD_REQUEST
         output_data = {}
         user = request.user
-        extra_data = {'user' : user}
+        extra_data = {'user' : user.id}
         serializer = self.serializer(data = request.data, extra_data=extra_data)
         if serializer.is_valid():
             serializer.save()
