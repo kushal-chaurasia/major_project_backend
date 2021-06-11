@@ -44,7 +44,7 @@ class BlogPostView(CreateUpdateDeleteView):
         output_data = {}
         user = request.user
         extra_data = {'user' : user}
-        serializer = self.serializer(data = request.deta, extra_data=extra_data)
+        serializer = self.serializer(data = request.data, extra_data=extra_data)
         if serializer.is_valid():
             serializer.save()
             output_status = True
