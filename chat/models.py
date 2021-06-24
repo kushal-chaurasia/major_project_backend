@@ -1,3 +1,4 @@
+from authentication.models import User
 from chat.managers import ThreadManager
 from django.db import models
 from django.utils import timezone
@@ -41,3 +42,9 @@ class Message(TrackingModel):
         if sender:
             return sender.username
         return ''
+
+class InScreenHistory(models.Model):
+    thread = models.ForeignKey(Thread, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    in_screen = models.BooleanField(default=False)
+

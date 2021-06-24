@@ -23,10 +23,10 @@ class CommentSerializer(CustomModelSerializer):
             if difference.days > 0:
                 return f"{difference.days} days ago"
             else:
-                hour = difference.seconds//3600
+                hour = int(difference.seconds//3600)
                 if hour > 0:
                     return f"{hour} hours ago"
-                elif difference.seconds//60 > 1 :
+                elif int(difference.seconds//60) > 1 :
                     return f"{difference//60} minutes ago"
                 else:
                     return "Just now"
@@ -75,7 +75,7 @@ class BlogPostSerializer(serializers.ModelSerializer):
     def get_is_liked(self, obj):
         request = self.context.get('request')
         if request:
-            data = Like.objects.filter(pk = obj.id , user = request.user).first()
+            data = Like.objects.filter(post = obj , user = request.user).first()
             if data:
                 return True
             else:

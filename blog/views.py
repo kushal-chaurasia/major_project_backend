@@ -22,7 +22,7 @@ class BlogPostView(CreateUpdateDeleteView):
         id = request.GET.get("id")
         if id:
             post_obj = self.model.objects.filter(pk = id).first()
-            serializer = BlogPostSerializer(post_obj)
+            serializer = BlogPostSerializer(post_obj, context={'request': request})
             output_status = True
             output_data = serializer.data
             output_detail = "Success"
