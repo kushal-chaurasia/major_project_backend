@@ -42,7 +42,7 @@ class LoginView(APIView):
                 data = {
                     "token" : get_token(username_obj),
                     "username" : username_obj.username,
-                    "user_id" : username_obj.id,
+                    "user_id" : email_obj.id,
                 }
             else:
                 output_status = False
